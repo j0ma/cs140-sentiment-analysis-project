@@ -27,4 +27,5 @@ Note: these are preliminary.
 - there are lots of external links
 - there is lots of negativity in the youtube comments
 
-
+## Links
+- [Sentiment Analysis @ NLP-progress](http://nlpprogress.com/english/sentiment_analysis.html)
