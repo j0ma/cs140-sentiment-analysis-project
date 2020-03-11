@@ -16,6 +16,7 @@
         - Stance: In favor / against
         - Sentiment: pos/neutral/neg
         - Emotion: anger, anticipation, disgust, ...
+        - Incorporate who wrote comment & who it was written about
 - [] Draft of annotation specification
 
 ## Observations from data
