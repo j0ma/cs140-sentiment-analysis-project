@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 
 with open('./data/all_comments.json', 'r') as f:
     comments_dataset = json.loads(f.read())
@@ -14,8 +15,9 @@ def triplets(arr):
         yield arr[i:i+3]
         i += 3
 
-def format_comment(triplet):
-    comment, date, author = triplet
-    return f"Author: {author}\nDate: {date}\nComment: {comment}"
-
+def load_comments(candidate_name=None):
+    if not candidate_name or candidate_name=='all':
+        return pd.read_csv('data/all_comments.csv', lineterminator='\n')
+    else:
+        return pd.read_csv(f'data/{candidate_name}.csv', lineterminator='\n')
 
