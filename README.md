@@ -18,6 +18,7 @@
         - Emotion: anger, anticipation, disgust, ...
         - Incorporate who wrote comment & who it was written about
 - [] Draft of annotation specification
+- [] Create slides
 
 ## Observations from data
 
