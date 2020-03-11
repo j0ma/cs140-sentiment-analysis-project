@@ -11,7 +11,16 @@ for candidate_name, quarters in h.comments_dataset.items():
     for quarter, videos in quarters.items():
         for video in videos:
             video_id = video['id']
-            video_title = video['title']
+
+            # grab video date and title
+            space_ix = video['title'].find(' ')
+            if space_ix > -1:
+                video_date = video['title'][:space_ix] 
+                video_title = video['title'][space_ix+1:]
+            else:
+                video_date = None
+                video_title = video['title']
+
             video_comments = video['comments']
             comment_triplets = h.triplets(video_comments)
             for comment, date, author in comment_triplets:
@@ -20,6 +29,7 @@ for candidate_name, quarters in h.comments_dataset.items():
                 d = {
                     'candidate': candidate_name,
                     'video_id': video_id,
+                    'video_date': video_date,
                     'video_title': video_title,
                     'date': date,
                     'author': author,
