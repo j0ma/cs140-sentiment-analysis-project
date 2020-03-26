@@ -24,7 +24,7 @@
     - policy_immigration
     - policy_international (including war)
     - policy_other
-    - policy_general
+    - policy_unspecified
 
 - What are the subcategories of voter appeal?
     - voter_appeal_white (candidate's opinion toward whites)
@@ -37,7 +37,7 @@
     - voter_appeal_female
     - voter_appeal_lgbt
     - voter_appeal_other
-    - voter_appeal_general
+    - voter_appeal_unspecified
 
 - What are the other aspects?
     - general
