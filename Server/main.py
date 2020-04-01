@@ -34,8 +34,16 @@ def get_comment():
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/upload')
+def upload():
+    pass #DO UPLOADING STUFF HERE PROBABLY? THEN REDIRECT TO /annotate
+
+@app.route('/annotate')
+def annotate():
     vid, comment = get_comment()
-    return render_template('index.html', vid=vid, comment=comment)
+    return render_template('annotation.html', vid=vid, comment=comment)
 
 @app.route('/submit', methods=['POST'])
 def submit():
