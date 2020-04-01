@@ -1,10 +1,9 @@
-
-# A very simple Flask Hello World app for you to get started with...
-
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, redirect, jsonify
 import json
 
 app = Flask(__name__)
+
+ACTIVE_DATASET = None
 
 with open('../data/buttigieg_preprocessed.json') as f:
     j = json.load(f)
@@ -36,9 +35,17 @@ def get_comment():
 def index():
     return render_template('index.html')
 
-@app.route('/upload')
+@app.route('/check_upload', methods=['GET'])
+def check_upload():
+    return jsonify(ACTIVE_DATASET)
+
+@app.route('/upload', methods=['POST'])
 def upload():
-    pass #DO UPLOADING STUFF HERE PROBABLY? THEN REDIRECT TO /annotate
+    global ACTIVE_DATASET
+    ACTIVE_DATASET = json.loads(request.files["annotate_this"].read())
+    print('Active dataset from inside /upload')
+    print(ACTIVE_DATASET)
+    return redirect('/annotate')
 
 @app.route('/annotate')
 def annotate():
@@ -62,4 +69,4 @@ def results():
         return resp
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
