@@ -207,7 +207,7 @@
 
 		<button id="add-candidate" class='btn' style="display:block; float:right; background:gray; color:white;">＋</button>
 		<br><br>
-		<button id="submit-button" class='btn' style="display:block; float:right; background:LightCoral;">Submit ▶</button>
+		<button id="submit-button" class='btn' style="display:block; float:right; background:LightCoral;">Irrelevant</button>
 	</div>
 </div>
 
@@ -215,6 +215,7 @@
 var aspects = {}
 $(document).ready(function(){
 	$('.menuitem').on("click", function(e){
+		$("#submit-button").text("Submit ▶");
 		var target = $(this).parents(".candidate").attr("id")
 
 		if (aspects[target].includes($(this).attr('id'))) {
@@ -267,7 +268,10 @@ $(document).ready(function(){
                 console.log(resp);
                 $("#vid_title").text(resp[0]);
                 $("#comment").text(resp[1]);
-                $('.menuitem').css('background', 'white')
+                $('.target').css('background', 'white')
+				$('.menuitem').css('background', 'white')
+				aspects = {};
+				$("#submit-button").text("Irrelevant");
             }
 	    )
 	});

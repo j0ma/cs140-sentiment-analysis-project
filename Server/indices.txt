@@ -1,1 +1,1 @@
-{"video": 0, "comment": 19}
+{"video": 0, "comment": 7}

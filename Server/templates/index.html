@@ -2,24 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-.dropdown {
-	display: inline-block;
-	margin-right: 30px;
-	margin-bottom: 20px;
-}
-.dropdown-submenu {
-	position: relative;
-}
-
-.dropdown-submenu .dropdown-menu {
-	top: 0;
-	left: 100%;
-	margin-top: -1px;
-}
 
 div#upload-form {
     width: 300px;
@@ -37,54 +20,9 @@ div#upload-form {
     </p>
     <div id="upload-form">
         <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="annotate_this" />
+			<input type="file" name="annotate_this" />
+			<br>
             <input type="submit" value="Upload dataset!"/>
         </form>
     </div>
 </div>
-
-<script>
-var aspects = []
-$(document).ready(function(){
-	$('.menuitem').on("click", function(e){
-		if (aspects.includes($(this).attr('id'))) {
-			$(this).css('background', 'white');
-			aspects.pop($(this).attr('id'));
-		} else {
-			$(this).css('background', 'LightCoral');
-			aspects.push($(this).attr('id'));
-		}
-		console.log(aspects);
-		e.stopPropagation();
-		e.preventDefault();
-	});
-
-	$('.dropdown-submenu .test').on("click", function(e){
-		$(this).next('ul').toggle();
-		e.stopPropagation();
-		e.preventDefault();
-	});
-
-	$('#submit-button').on("click", function(e){
-		$.post(
-            "/submit",
-            {
-                'aspects': JSON.stringify(aspects),
-                'comment': $("#comment").text()
-            },
-            function(r) {
-                resp = JSON.parse(r)
-                console.log(resp);
-                $("#vid_title").text(resp[0]);
-                $("#comment").text(resp[1]);
-                $('.menuitem').css('background', 'white')
-            }
-	    )
-	});
-
-});
-</script>
-
-</div>
-</body>
-</html>

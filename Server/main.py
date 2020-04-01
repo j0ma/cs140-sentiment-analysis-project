@@ -4,30 +4,30 @@ import json
 app = Flask(__name__)
 
 ACTIVE_DATASET = None
+VIDS = None
 
-with open('../data/buttigieg_preprocessed.json') as f:
-    j = json.load(f)
-    vids = list(j.keys())
-
-def get_comment():
+def get_comment(increase=True):
     with open('indices.txt') as index_doc:
         indices = json.load(index_doc)
         vid_index = indices['video']
         comment_index = indices['comment']
 
+    if increase:
+        comment_index += 1
+
     try:
-        vid = vids[vid_index]
-        comments = list(j[vid].values())
+        vid = VIDS[vid_index]
+        comments = list(ACTIVE_DATASET[vid].values())
         comment = comments[comment_index]
     except:
         vid_index += 1
         comment_index = 0
-        vid = vids[vid_index]
-        comments = list(j[vid].values())
+        vid = VIDS[vid_index]
+        comments = list(ACTIVE_DATASET[vid].values())
         comment = comments[comment_index]
 
     with open('indices.txt', 'w') as index_doc:
-        json.dump({'video': vid_index, 'comment':comment_index+1}, index_doc)
+        json.dump({'video': vid_index, 'comment':comment_index}, index_doc)
 
     return vid, comment
 
@@ -42,19 +42,21 @@ def check_upload():
 @app.route('/upload', methods=['POST'])
 def upload():
     global ACTIVE_DATASET
+    global VIDS
     ACTIVE_DATASET = json.loads(request.files["annotate_this"].read())
+    VIDS = list(ACTIVE_DATASET.keys())
     print('Active dataset from inside /upload')
-    print(ACTIVE_DATASET)
+    # print(ACTIVE_DATASET)
     return redirect('/annotate')
 
 @app.route('/annotate')
 def annotate():
-    vid, comment = get_comment()
+    vid, comment = get_comment(increase=False)
     return render_template('annotation.html', vid=vid, comment=comment)
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    aspects = list(set(json.loads(request.form.get('aspects'))))
+    aspects = json.loads(request.form.get('aspects'))
     comment = request.form.get('comment')
     with open('annotations.jsonl', 'a') as outfile:
         outfile.write(json.dumps({'comment': comment, 'aspects': aspects})+'\n')
