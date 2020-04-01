@@ -33,191 +33,210 @@
 			<p id="comment">{{comment}}</p>
 		</div>
 
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Target
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a class="menuitem" tabindex="-1" href="#" id="target_buttigieg">Pete Buttigieg</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="target_sanders">Bernie Sanders</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="target_warren">Elizabeth Warren</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="target_biden">Joe Biden</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="target_yang">Andrew Yang</a></li>
-			</ul>
+		<div class="candidate">
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Target
+				<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="target" tabindex="-1" href="#" id="target_buttigieg">Pete Buttigieg</a></li>
+					<li><a class="target" tabindex="-1" href="#" id="target_sanders">Bernie Sanders</a></li>
+					<li><a class="target" tabindex="-1" href="#" id="target_warren">Elizabeth Warren</a></li>
+					<li><a class="target" tabindex="-1" href="#" id="target_biden">Joe Biden</a></li>
+					<li><a class="target" tabindex="-1" href="#" id="target_yang">Andrew Yang</a></li>
+				</ul>
+			</div>
+
+			<div class="annotations" style="width: 80%; display:none">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">General
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a class="menuitem" tabindex="-1" href="#" id="general_positive">Positive</a></li>
+						<li><a class="menuitem" tabindex="-1" href="#" id="general_negative">Negative</a></li>
+					</ul>
+				</div>
+
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Policy
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu">
+							<a class="test" tabindex="-1" href="#">LGBT+<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_lgbt_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_lgbt_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Economy<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_economy_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_economy_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Education<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_education_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_education_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Immigration<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_immigration_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_immigration_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Race<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_race_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_race_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Healthcare<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_healthcare_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_healthcare_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">International<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_international_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_international_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Gender<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_gender_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_gender_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Unspecified<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_unspecified_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_unspecified_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Other<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_other_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="policy_other_negative">Negative</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Voter Appeal
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu">
+							<a class="test" tabindex="-1" href="#">Unspecified<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_unspecified_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_unspecified_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">African-American<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_african_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_african_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Asian-American<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_asian_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_asian_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Hispanic<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_hispanic_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_hispanic_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">White<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_white_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_white_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">LGBT+<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_lgbt_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_lgbt_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Female<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_female_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_female_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Male<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_male_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_male_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Old<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_old_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_old_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Young<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Republican<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Independent<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_independent_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_independent_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Democrat<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_democrat_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_democrat_negative">Negative</a></li>
+							</ul>
+							<a class="test" tabindex="-1" href="#">Other<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_other_positive">Positive</a></li>
+								<li><a class="menuitem" tabindex="-1" href="#" id="appeal_other_negative">Negative</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Campaign Prospects
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a class="menuitem" tabindex="-1" href="#" id="campaign_prospects_positive">Positive</a></li>
+						<li><a class="menuitem" tabindex="-1" href="#" id="campaign_prospects_negative">Negative</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
-        <div class="annotations" style="width: 80%; display:inline-block">
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">General
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a class="menuitem" tabindex="-1" href="#" id="general_positive">Positive</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="general_negative">Negative</a></li>
-			</ul>
-		</div>
-
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Policy
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li class="dropdown-submenu">
-					<a class="test" tabindex="-1" href="#">LGBT+<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_lgbt_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_lgbt_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Economy<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_economy_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_economy_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Education<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_education_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_education_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Immigration<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_immigration_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_immigration_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Race<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_race_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_race_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Healthcare<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_healthcare_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_healthcare_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">International<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_international_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_international_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Gender<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_gender_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_gender_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Unspecified<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_unspecified_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_unspecified_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Other<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_other_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="policy_other_negative">Negative</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Voter Appeal
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li class="dropdown-submenu">
-					<a class="test" tabindex="-1" href="#">Unspecified<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_unspecified_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_unspecified_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">African-American<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_african_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_african_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Asian-American<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_asian_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_asian_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Hispanic<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_hispanic_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_hispanic_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">White<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_white_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_white_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">LGBT+<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_lgbt_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_lgbt_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Female<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_female_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_female_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Male<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_male_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_male_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Old<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_old_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_old_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Young<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Republican<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_young_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Independent<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_independent_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_independent_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Democrat<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_democrat_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_democrat_negative">Negative</a></li>
-					</ul>
-					<a class="test" tabindex="-1" href="#">Other<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_other_positive">Positive</a></li>
-						<li><a class="menuitem" tabindex="-1" href="#" id="appeal_other_negative">Negative</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Campaign Prospects
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a class="menuitem" tabindex="-1" href="#" id="campaign_prospects_positive">Positive</a></li>
-				<li><a class="menuitem" tabindex="-1" href="#" id="campaign_prospects_negative">Negative</a></li>
-			</ul>
-		</div>
-
-		<button id="submit-button" class='btn' style="float:right; background:LightCoral;">Submit ▶</button>
+		<button id="add-candidate" class='btn' style="display:block; float:right; background:gray; color:white;">＋</button>
+		<br><br>
+		<button id="submit-button" class='btn' style="display:block; float:right; background:LightCoral;">Submit ▶</button>
 	</div>
 </div>
 
 <script>
-var aspects = []
+var aspects = {}
 $(document).ready(function(){
 	$('.menuitem').on("click", function(e){
-		if (aspects.includes($(this).attr('id'))) {
+		var target = $(this).parents(".candidate").attr("id")
+
+		if (aspects[target].includes($(this).attr('id'))) {
 			$(this).css('background', 'white');
-			aspects.pop($(this).attr('id'));
+			aspects[target].pop($(this).attr('id'));
 		} else {
 			$(this).css('background', 'LightCoral');
-			aspects.push($(this).attr('id'));
+			aspects[target].push($(this).attr('id'));
 		}
 		console.log(aspects);
+		e.stopPropagation();
+		e.preventDefault();
+	});
+
+	$('.target').on("click", function(e){
+		$(this).css('background', 'LightCoral');
+		aspects[$(this).attr('id')] = [];
+		$(this).parents(".candidate").attr("id", $(this).attr("id"));
+
+		$(this).parents(".candidate").children(".annotations").css("display", "inline-block");
+
+		console.log($(this).parents(".candidate").attr("id"));
 		e.stopPropagation();
 		e.preventDefault();
 	});
@@ -226,6 +245,14 @@ $(document).ready(function(){
 		$(this).next('ul').toggle();
 		e.stopPropagation();
 		e.preventDefault();
+	});
+
+	$('#add-candidate').on("click", function(e){
+		var candidate = $(".candidate:first").clone(true);
+		$(candidate).find(".menuitem").css("background","white");
+		$(candidate).find(".target").css("background","white");
+		$(candidate).children(".annotations").css("display", "none");
+		candidate.insertAfter($(".candidate:last"));
 	});
 
 	$('#submit-button').on("click", function(e){
