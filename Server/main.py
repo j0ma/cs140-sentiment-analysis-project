@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-with open('buttigieg_preprocessed.json') as f:
+with open('../data/buttigieg_preprocessed.json') as f:
     j = json.load(f)
     vids = list(j.keys())
 
@@ -60,3 +60,6 @@ def results():
         resp = make_response(results_file.read(), 200)
         resp.mimetype = "text/plain"
         return resp
+
+if __name__ == "__main__":
+    app.run()
