@@ -24,6 +24,9 @@
 </head>
 <body>
 
+<p id="vid_index" style="display:none">{{vid}}</p>
+<p id="comment_index" style="display:none">{{comment}}</p>
+
 <div class="container">
 	<h2 style="text-align: center;">Aspect Annotation Task</h2>
 	<p style="text-align: center; margin-bottom: 20px;">Overview goes here, with a link to <a href="#">guidelines</a>.</p>
@@ -213,8 +216,30 @@
 </div>
 
 <script>
-var aspects = {}
+var aspects = {};
+var next_vid_index = 0;
+var next_comment_index = 0;
 $(document).ready(function(){
+	$.get(
+		"/get_comment",
+		{
+			'vid_index': $("#vid_index").text(),
+			'comment_index': $("#comment_index").text()
+		},
+		function(r) {
+			resp = JSON.parse(r)
+			console.log(resp);
+			$("#vid_title").text(resp[0]);
+			$("#comment").text(resp[1]);
+			next_vid_index = resp[2]
+			next_comment_index = resp[3]
+			$('.target').css('background', 'white')
+			$('.menuitem').css('background', 'white')
+			aspects = {};
+			$("#submit-button").text("Irrelevant");
+		}
+	)
+
 	$('.menuitem').on("click", function(e){
 		$("#submit-button").text("Submit ▶");
 		var target = $(this).parents(".candidate").attr("id")
@@ -232,6 +257,7 @@ $(document).ready(function(){
 	});
 
 	$('.target').on("click", function(e){
+		$(this).parents(".candidate").find(".target").css("background", "white");
 		$(this).css('background', 'LightCoral');
 		aspects[$(this).attr('id')] = [];
 		$(this).parents(".candidate").attr("id", $(this).attr("id"));
@@ -268,17 +294,12 @@ $(document).ready(function(){
             "/submit",
             {
                 'aspects': JSON.stringify(aspects),
-                'comment': $("#comment").text()
+				'comment': $("#comment").text(),
+				'next_vid_index': next_vid_index,
+				'next_comment_index': next_comment_index
             },
             function(r) {
-                resp = JSON.parse(r)
-                console.log(resp);
-                $("#vid_title").text(resp[0]);
-                $("#comment").text(resp[1]);
-                $('.target').css('background', 'white')
-				$('.menuitem').css('background', 'white')
-				aspects = {};
-				$("#submit-button").text("Irrelevant");
+                window.location.href = '/annotate/'+next_vid_index+'/'+next_comment_index
             }
 	    )
 	});
