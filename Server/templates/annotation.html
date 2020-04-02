@@ -205,7 +205,8 @@
 			</div>
 		</div>
 
-		<button id="add-candidate" class='btn' style="display:block; float:right; background:gray; color:white;">＋</button>
+		<button id="remove-candidate" class='btn' style="display:block; float:right; background:gray; color:white;">—</button>
+		<button id="add-candidate" class='btn' style="display:block; float:right; background:gray; color:white; margin-right:5px;">＋</button>
 		<br><br>
 		<button id="submit-button" class='btn' style="display:block; float:right; background:LightCoral;">Irrelevant</button>
 	</div>
@@ -254,6 +255,12 @@ $(document).ready(function(){
 		$(candidate).find(".target").css("background","white");
 		$(candidate).children(".annotations").css("display", "none");
 		candidate.insertAfter($(".candidate:last"));
+	});
+
+	$('#remove-candidate').on("click", function(e){
+		if ($('.candidate').length > 1) {
+			$(".candidate:last").remove();
+		}
 	});
 
 	$('#submit-button').on("click", function(e){
