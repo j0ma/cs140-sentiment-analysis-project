@@ -2,7 +2,7 @@
 
 ## Instructions for annotators
 
-Hello, dear annotator! ╭( ･ㅂ･)و ̑̑ ˂ᵒ͜͡ᵏᵎ⁾✩
+Hello, dear annotator! ( ͡° ͜ʖ ͡°)
 
 Here are some instructions.
 
