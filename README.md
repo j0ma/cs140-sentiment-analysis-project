@@ -1,11 +1,10 @@
 # CS140 Group Annotation Project
 
-## TODO
+## Instructions for annotators
 
-- [x] Generate 200 comments for each candidate to be given to annotators
-- [x] Implement custom JSON upload to annotation tool
-- [x] Implement custom JSON download from annotation tool
-- [x] Implement multiple rows in annotation view
+Hello, dear annotator! ╭( ･ㅂ･)و ̑̑ ˂ᵒ͜͡ᵏᵎ⁾✩
+
+Here are some instructions.
 
 ## Links
 - [Sentiment Analysis @ NLP-progress](http://nlpprogress.com/english/sentiment_analysis.html)
