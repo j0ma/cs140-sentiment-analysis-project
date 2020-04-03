@@ -1,31 +1,25 @@
 from flask import Flask, render_template, request, make_response, redirect, jsonify
 import json
+import re
 
 app = Flask(__name__)
 
 ACTIVE_DATASET = None
-VIDS = None
 
 @app.route('/get_comment')
 def get_comment():
-    vid_index = int(request.args.get('vid_index'))
     comment_index = int(request.args.get('comment_index'))
 
-    vid = VIDS[vid_index]
-    comments = list(ACTIVE_DATASET[vid].values())
-    comment = comments[comment_index]
+    comment_parts = ACTIVE_DATASET[comment_index]
 
-    try:
-        next_vid_index = vid_index
-        next_comment_index = comment_index+1
-        temp = VIDS[vid_index]
-        comments = list(ACTIVE_DATASET[vid].values())
-        temp = comments[comment_index]
-    except:
-        next_vid_index = vid_index + 1
-        next_comment_index = 0
+    comment_parts = re.split(r"video id: | video title: | author: | comment time: .*? ", comment_parts)
 
-    return json.dumps([vid, comment, next_vid_index, next_comment_index])
+    vid = comment_parts[2]
+    comment = comment_parts[4]
+
+    next_comment_index = comment_index+1
+    
+    return json.dumps([vid, comment, next_comment_index])
 
 @app.route('/')
 def index():
@@ -38,36 +32,33 @@ def check_upload():
 @app.route('/upload', methods=['POST'])
 def upload():
     global ACTIVE_DATASET
-    global VIDS
-    ACTIVE_DATASET = json.loads(request.files["annotate_this"].read())
-    VIDS = list(ACTIVE_DATASET.keys())
+    lines = request.files["annotate_this"].read().decode('utf-8').split("\r\n")
+    lines = [line for line in lines if line]
+    ACTIVE_DATASET = [json.loads(line)["text"] for line in lines]
+    print(ACTIVE_DATASET[0])
     print('Active dataset from inside /upload')
-    # print(ACTIVE_DATASET)
     return redirect('/annotate')
 
-@app.route('/annotate/<vid_index>/<comment_index>')
-def annotate(vid_index, comment_index):
-    return render_template('annotation.html', vid=vid_index, comment=comment_index)
+@app.route('/annotate/<comment_index>')
+def annotate(comment_index):
+    return render_template('annotation.html', comment=comment_index)
 
 @app.route('/annotate')
 def start_annotate():
     with open('indices.txt') as index_doc:
-        indices = json.load(index_doc)
-        vid_index = indices['video']
-        comment_index = indices['comment']
-    return redirect('annotate/{}/{}'.format(vid_index, comment_index))
+        comment_index = int(index_doc.read().strip())
+    return redirect('annotate/{}'.format(comment_index))
 
 @app.route('/submit', methods=['POST'])
 def submit():
     aspects = json.loads(request.form.get('aspects'))
     comment = request.form.get('comment')
-    vid_index = request.form.get('next_vid_index')
-    comment_index = request.form.get('next_comment_index')
+    next_comment_index = request.form.get('next_comment_index')
     with open('annotations.jsonl', 'a') as outfile:
         outfile.write(json.dumps({'comment': comment, 'aspects': aspects})+'\n')
     
     with open('indices.txt', 'w') as index_doc:
-        json.dump({'video': vid_index, 'comment':comment_index}, index_doc)
+        index_doc.write(next_comment_index)
 
     return ''
 

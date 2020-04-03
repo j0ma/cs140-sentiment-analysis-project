@@ -24,7 +24,6 @@
 </head>
 <body>
 
-<p id="vid_index" style="display:none">{{vid}}</p>
 <p id="comment_index" style="display:none">{{comment}}</p>
 
 <div class="container">
@@ -217,13 +216,11 @@
 
 <script>
 var aspects = {};
-var next_vid_index = 0;
 var next_comment_index = 0;
 $(document).ready(function(){
 	$.get(
 		"/get_comment",
 		{
-			'vid_index': $("#vid_index").text(),
 			'comment_index': $("#comment_index").text()
 		},
 		function(r) {
@@ -231,8 +228,7 @@ $(document).ready(function(){
 			console.log(resp);
 			$("#vid_title").text(resp[0]);
 			$("#comment").text(resp[1]);
-			next_vid_index = resp[2]
-			next_comment_index = resp[3]
+			next_comment_index = resp[2]
 			$('.target').css('background', 'white')
 			$('.menuitem').css('background', 'white')
 			aspects = {};
@@ -295,11 +291,10 @@ $(document).ready(function(){
             {
                 'aspects': JSON.stringify(aspects),
 				'comment': $("#comment").text(),
-				'next_vid_index': next_vid_index,
 				'next_comment_index': next_comment_index
             },
             function(r) {
-                window.location.href = '/annotate/'+next_vid_index+'/'+next_comment_index
+                window.location.href = '/annotate/'+next_comment_index
             }
 	    )
 	});
