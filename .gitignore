@@ -1,4 +1,4 @@
 __pycache__/
 meeting-notes*
-Server/annotations.jsonl
-Server/indices.txt
+./Server/annotations.jsonl
+./Server/indices.txt

@@ -32,9 +32,11 @@ def check_upload():
 @app.route('/upload', methods=['POST'])
 def upload():
     global ACTIVE_DATASET
-    lines = request.files["annotate_this"].read().decode('utf-8').split("\r\n")
+    lines = request.files["annotate_this"].read()
+    print(lines)
+    lines = lines.decode('utf-8').split("\n")
     lines = [line for line in lines if line]
-    ACTIVE_DATASET = [json.loads(line)["text"] for line in lines]
+    ACTIVE_DATASET = [json.loads(line).get('text') for line in lines]
     print(ACTIVE_DATASET[0])
     print('Active dataset from inside /upload')
     return redirect('/annotate')
