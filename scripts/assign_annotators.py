@@ -8,7 +8,8 @@ ANNOTATORS = [
   "Yonglin Wang",
   "Zhuoran Huang",
   "Shiyi Shen",
-  "Xiaoyu Lu"
+  "Xiaoyu Lu",
+  "Linxuan Yang"
 ]
 
 CANDIDATES = [
@@ -25,9 +26,6 @@ if __name__ == '__main__':
     random.shuffle(CANDIDATES)
     for ann, cand in zip(ANNOTATORS, CANDIDATES):
         ASSIGNMENTS[ann].append(cand)
-    last_candidate = CANDIDATES[-1]
-    rand_annotator = random.choice(ANNOTATORS)
-    ASSIGNMENTS[rand_annotator].append(last_candidate)
     for ann, cands in ASSIGNMENTS.items():
         print(f"{ann}: {', '.join(cands)}")
 
