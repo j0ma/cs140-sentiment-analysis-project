@@ -30,13 +30,13 @@ Good luck!! (•̀ᴗ•́)൬༉
 
 Here is the schedule of candidate-annotator assignments:
 
-| Candidate   |    Annotator             |
-|-------------|--------------------------|
-|  Biden      |    Linxuan Yang          |
-|  Buttigieg  |    Shiyi Shen            |
-|  Sanders    |    Xiaoyu Lu             |
-|  Warren     |    Zhuoran Huang         |
-|  Yang       |    Yonglin Wang          |
+| Candidate   |    Annotator                |
+|-------------|-----------------------------|
+|  Biden      |    Shiyi Shen               |
+|  Buttigieg  |    Xiaoyu Lu                |
+|  Sanders    |    Yonglin Wang             |
+|  Warren     |    Zhuoran Huang            |
+|  Yang       |    Xiaoyu Lu                |
 
 Hint: you can double-check the random assignments by running
 
