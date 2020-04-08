@@ -30,14 +30,19 @@ Good luck!! (•̀ᴗ•́)൬༉
 
 Here is the schedule of candidate-annotator assignments:
 
-| Candidate   | Annotator |
-|-------------|-----------|
-|  Biden      |    ?      |
-|  Buttigieg  |    ?      |
-|  Sanders    |    ?      |
-|  Warren     |    ?      |
-|  Yang       |    ?      |
+| Candidate   |    Annotator          |
+|-------------|-----------------------|
+|  Biden      |    Shiyi Shen         |
+|  Buttigieg  |    Xiaoyu Lu          |
+|  Sanders    |    Yonglin Wang       |
+|  Warren     |    Zhuoran Huang      |
+|  Yang       |    Xiaoyu Lu          |
 
+Hint: you can double-check the random assignments by running
+
+```
+python scripts/assign_annotators.py
+```
 
 ## Links
 - [Sentiment Analysis @ NLP-progress](http://nlpprogress.com/english/sentiment_analysis.html)
