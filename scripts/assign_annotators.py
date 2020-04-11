@@ -28,7 +28,17 @@ if __name__ == '__main__':
     remaining_candidate = CANDIDATES[-1]
     random_annotator = random.choice(ANNOTATORS)
     ASSIGNMENTS[random_annotator].append(remaining_candidate)
+
+    shiyi_cand = ASSIGNMENTS['Shiyi Shen']
+    for c in shiyi_cand:
+        rand_ann = random.choice(ANNOTATORS)
+        while rand_ann == 'Shiyi Shen':
+            rand_ann = random.choice(ANNOTATORS)
+        ASSIGNMENTS[rand_ann].append(c)
+    
+    del ASSIGNMENTS['Shiyi Shen']
+
     for ann, cands in ASSIGNMENTS.items():
         print(f"{ann}: {', '.join(cands)}")
 
-
+    

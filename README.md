@@ -32,7 +32,7 @@ Here is the schedule of candidate-annotator assignments:
 
 | Candidate   |    Annotator                |
 |-------------|-----------------------------|
-|  Biden      |    Shiyi Shen               |
+|  Biden      |    Yonglin Wang             |
 |  Buttigieg  |    Xiaoyu Lu                |
 |  Sanders    |    Yonglin Wang             |
 |  Warren     |    Zhuoran Huang            |
