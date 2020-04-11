@@ -47,8 +47,11 @@ def annotate(comment_index):
 
 @app.route('/annotate')
 def start_annotate():
-    with open('indices.txt') as index_doc:
-        comment_index = int(index_doc.read().strip())
+    try:
+        with open('indices.txt') as index_doc:
+            comment_index = int(index_doc.read().strip())
+    except:
+        comment_index = 0 
     return redirect('annotate/{}'.format(comment_index))
 
 @app.route('/submit', methods=['POST'])
