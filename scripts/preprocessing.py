@@ -3,6 +3,7 @@ import json
 from nltk import word_tokenize
 import regex as re
 import pandas as pd
+import helpers as h
 
 # import emoji
 # video title and comment time
@@ -14,8 +15,8 @@ def write_json(json_file, dataset):
     with open(json_file, 'w') as f:
         json.dump(dataset, f)
 
-def data_preprocessing_new(input_file, start, output_file=None):
-    data = pd.read_csv(input_file)
+def data_preprocessing_new(candidate_name, start, output_file=None):
+    data = h.load_comments(candidate_name)
     rows = data.to_dict('records')
     dataset = {}
     for ix, row in enumerate(rows):
@@ -99,18 +100,21 @@ def clean_comment(comment):
 
 if __name__ == "__main__":
 
-    biden_file = './data/biden.csv'
-    buttigieg_file = './data/buttigieg.csv'
-    sanders_file = './data/sanders.csv'
-    warren_file = './data/warren.csv'
-    yang_file = './data/yang.csv'
-
-    # data_preprocessing(biden_file, 'biden,')
-    # data_preprocessing(buttigieg_file, 'buttigieg,')
-    # data_preprocessing(sanders_file, 'sanders,')
-    # data_preprocessing(warren_file, 'warren,')
-    # data_preprocessing(yang_file, 'yang,')
+    for cand in CANDIDATES:
+        print(f'Processing data for: {cand}')
+        #input_file = f"./data/{cand}.csv"
+        output_file = f"./data/{cand}_preprocessed.json"
+        data_preprocessing_new(cand, f'{cand},', output_file)
     
-    data_preprocessing_new(
-            biden_file, 'biden,', 
-            output_file="./data/biden.test.json")
+    # biden_file = './data/biden.csv'
+    # buttigieg_file = './data/buttigieg.csv'
+    # sanders_file = './data/sanders.csv'
+    # warren_file = './data/warren.csv'
+    # yang_file = './data/yang.csv'
+
+    # data_preprocessing_new(biden_file, 'biden,')
+    # data_preprocessing_new(buttigieg_file, 'buttigieg,')
+    # data_preprocessing_new(sanders_file, 'sanders,')
+    # data_preprocessing_new(warren_file, 'warren,')
+    # data_preprocessing_new(yang_file, 'yang,')
+    

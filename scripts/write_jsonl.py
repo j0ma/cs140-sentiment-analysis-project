@@ -1,5 +1,8 @@
 import json
 import jsonlines
+import helpers as h
+
+CANDIDATES = set(['biden', 'yang', 'buttigieg', 'warren', 'sanders'])
 
 def write_jsonline(json_file):
     with jsonlines.open("./data/yang.jsonl",mode='w') as writer:
@@ -20,5 +23,10 @@ def write_jsonline_new(input_file, output_file):
 
 if __name__ == '__main__':
     #write_jsonline("./data/yang_preprocessed.json")
-    write_jsonline_new(input_file="./data/biden.test.json", 
-                       output_file="./data/biden.test.jsonl")
+
+    for cand in CANDIDATES:
+        print(f'Processing data for: {cand}')
+        input_file = f"./data/{cand}_preprocessed.json"
+        output_file = f"./data/{cand}.jsonl"
+        write_jsonline_new(input_file=input_file,
+                           output_file=output_file)

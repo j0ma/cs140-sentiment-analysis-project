@@ -1,8 +1,15 @@
 #!/bin/sh
 
 INPUT_FOLDER='../data'
-OUTPUT_FOLDER=${INPUT_FOLDER}/comments_for_annotators
-SAMPLES_PER_CANDIDATE=200
+
+SAMPLES_PER_CANDIDATE=$1
+
+if [ -z $SAMPLES_PER_CANDIDATE ]
+then
+    SAMPLES_PER_CANDIDATE=200
+fi
+
+OUTPUT_FOLDER=${INPUT_FOLDER}/comments_for_annotators/${SAMPLES_PER_CANDIDATE}
 SEED_FILE='../README.md'
 
 echo "Welcome to the comment sampling script!"
@@ -16,8 +23,8 @@ do
     echo "Sampling ${SAMPLES_PER_CANDIDATE} rows from ${CAND}"
     OUTPUT_FILE=$(
         echo $INPUT_FILE | \
-            sed "s/\.jsonl/\.200.jsonl/g" | \
-            sed "s/\.\.\/data/\.\.\/data\/comments_for_annotators/g"
+            sed "s/\.jsonl/\.${SAMPLES_PER_CANDIDATE}.jsonl/g" | \
+            sed "s/\.\.\/data/\.\.\/data\/comments_for_annotators\/${SAMPLES_PER_CANDIDATE}/g"
     )
     shuf \
         --random-source=${SEED_FILE} \
