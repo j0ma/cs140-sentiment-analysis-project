@@ -6,9 +6,9 @@ Hello, dear annotator! ( ͡° ͜ʖ ͡°)
 
 This repository contains our code and data for the CS140 group project on sentiment analysis.
 
-In `./data/comments_for_annotators` you will find 5 `jsonl` files, each corresponding to a 2020 presidential candidate.
+In `./data/comments_for_annotators/<number>` you will find 5 `jsonl` files, each corresponding to a 2020 presidential candidate.
 
-Each file contains 200 comments, randomly sampled from the YouTube data set collected earlier in the semester.
+Each file contains `<number>` comments, randomly sampled from the YouTube data set collected earlier in the semester. Note that potential values for `<number>` are 100, 200, and 500.
 
 Your mission, should you choose to accept it, is as follows:
 
@@ -17,7 +17,7 @@ Your mission, should you choose to accept it, is as follows:
 2. Install dependencies by running `pip install -r requirements.txt`
 3. Go to `./Server/` and run `python main.py`
 4. In your web browser of choice, navigate to `https://localhost:5000`
-5. Click `"Browse"`, navigate to `./data/comments_for_annotators`, and choose the file `<assigned_candidate>.200.jsonl`. Afterwards, click `"Upload"`.
+5. Click `"Browse"`, navigate to `./data/comments_for_annotators/<number>`, and choose the file `<assigned_candidate>.<number>.jsonl`. Afterwards, click `"Upload"`.
 6. Wait to be redirected and annotate.
     - If you need to revise an annotation, feel free to alter comment index in the URL to backward by your desired number of comments.
 7. After annotating, your annotation file will be `./Server/annotations.jsonl`
