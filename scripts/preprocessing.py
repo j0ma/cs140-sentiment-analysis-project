@@ -1,11 +1,48 @@
 from collections import defaultdict
 import json
 from nltk import word_tokenize
-# import emoji
 import regex as re
+import pandas as pd
+
+# import emoji
 # video title and comment time
 # candidate,video_id,video_date,video_title,date,author,comment
 
+CANDIDATES = set(['biden', 'yang', 'buttigieg', 'warren', 'sanders'])
+
+def write_json(json_file, dataset):
+    with open(json_file, 'w') as f:
+        json.dump(dataset, f)
+
+def data_preprocessing_new(input_file, start, output_file=None):
+    data = pd.read_csv(input_file)
+    rows = data.to_dict('records')
+    dataset = {}
+    for ix, row in enumerate(rows):
+
+        # skip rows with irrelevant candidate field
+        candidate = row['candidate']
+        if candidate not in CANDIDATES:
+            continue
+
+        video_id = row['video_id']
+        video_title = row['video_title']
+        comment_time = row['date']
+        author = row['author']
+        comment = clean_comment(row['comment'])
+        out = {
+            'video_id': video_id,
+            'video_title': video_title,
+            'comment_time': comment_time,
+            'author': author,
+            'comment': comment
+        }
+        dataset[ix] = out
+
+    if output_file is None:
+        output_file = './data/' + start[:-1] + '_preprocessed.json'
+
+    write_json(output_file, dataset)
 
 def data_preprocessing(file, start):
     with open(file) as f:
@@ -51,11 +88,6 @@ def clean_comment(comment):
     comment = (comment.encode('ascii', 'ignore')).decode("utf-8")
     return ' '.join([w.lower() for w in word_tokenize(comment)])
 
-def write_json(json_file, dataset):
-    with open(json_file, 'w') as f:
-        json.dump(dataset, f)
-
-
 # def extract_emojis(str):
 #     emoji_list = []
 #     data = regex.findall(r'\X', str)
@@ -65,7 +97,6 @@ def write_json(json_file, dataset):
 #
 #     return emoji_list
 
-
 if __name__ == "__main__":
 
     biden_file = './data/biden.csv'
@@ -74,8 +105,12 @@ if __name__ == "__main__":
     warren_file = './data/warren.csv'
     yang_file = './data/yang.csv'
 
-    data_preprocessing(biden_file, 'biden,')
-    data_preprocessing(buttigieg_file, 'buttigieg,')
-    data_preprocessing(sanders_file, 'sanders,')
-    data_preprocessing(warren_file, 'warren,')
-    data_preprocessing(yang_file, 'yang,')
+    # data_preprocessing(biden_file, 'biden,')
+    # data_preprocessing(buttigieg_file, 'buttigieg,')
+    # data_preprocessing(sanders_file, 'sanders,')
+    # data_preprocessing(warren_file, 'warren,')
+    # data_preprocessing(yang_file, 'yang,')
+    
+    data_preprocessing_new(
+            biden_file, 'biden,', 
+            output_file="./data/biden.test.json")
