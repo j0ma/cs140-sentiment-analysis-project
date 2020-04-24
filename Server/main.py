@@ -12,14 +12,20 @@ def get_comment():
 
     comment_parts = ACTIVE_DATASET[comment_index]
 
-    comment_parts = re.split(r"video id: | video title: | author: | comment time: .*? ", comment_parts)
+    # comment_parts = re.split(r"video id: | video title: | author: | comment time: .*? ", comment_parts)
 
-    vid = comment_parts[2]
-    comment = comment_parts[4]
+    print('Comment parts')
+    print(comment_parts)
+
+    # video_title = comment_parts[2]
+    # comment = comment_parts[4]
+
+    video_title = comment_parts['video_title']
+    comment = comment_parts['comment']
 
     next_comment_index = comment_index+1
     
-    return json.dumps([vid, comment, next_comment_index])
+    return json.dumps([video_title, comment, next_comment_index])
 
 @app.route('/')
 def index():
@@ -36,7 +42,8 @@ def upload():
     print(lines)
     lines = lines.decode('utf-8').split("\n")
     lines = [line for line in lines if line]
-    ACTIVE_DATASET = [json.loads(line).get('text') for line in lines]
+    #ACTIVE_DATASET = [json.loads(line).get('text') for line in lines]
+    ACTIVE_DATASET = [json.loads(line) for line in lines]
     print(ACTIVE_DATASET[0])
     print('Active dataset from inside /upload')
     return redirect('/annotate')
