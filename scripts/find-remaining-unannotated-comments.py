@@ -17,6 +17,11 @@ import json
 import sys
 import os
 
+# check if we are in ./scripts/ as we should be
+WORKING_DIR = os.getcwd()
+if not WORKING_DIR.endswith('/scripts'):
+    sys.exit('Must run script while in <repo_root>/scripts folder!')
+
 CANDIDATES = ['biden', 'buttigieg', 'sanders', 'warren', 'yang']
 
 DATA_PATH=os.path.abspath("../data/")
