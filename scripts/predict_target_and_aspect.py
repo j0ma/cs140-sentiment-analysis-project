@@ -36,6 +36,7 @@ Y_appeal = corpus.apply(lambda r: is_appeal_comment(r, cols), axis=1)
 Y_cp = corpus.apply(lambda r: is_campaign_prospects_comment(r), axis=1)
 Y_positive = corpus.apply(lambda r: is_generally_positive(r), axis=1)
 labels = [Y_target, Y_policy, Y_appeal, Y_cp, Y_positive]
+short_names = ['target', 'policy','voter_appeal', 'campaign_prospects', 'general']
 names = ['Who is the target?', 
          'Is the comment about policy?', 
          'Is the comment about voter appeal?', 
@@ -51,18 +52,38 @@ X_tf = tf.fit_transform(comment)
 logregs_cv = [LogisticRegression(max_iter=1000) for y in labels]
 logregs_tf = [LogisticRegression(max_iter=1000) for y in labels]
 
+res = {'cv': {}, 'tf': {}}
+
 print('Predicting using regular BoW features:')
-for name, y, lr in zip(names, labels, logregs_cv):
+for sn, name, y, lr in zip(short_names, names, labels, logregs_cv):
     lr.fit(X=X_cv, y=y)
     y_pred = lr.predict(X_cv)
+    res['cv'][f'{sn}_true'] = y
+    res['cv'][sn] = y_pred
     report = classification_report(y_pred=y_pred, y_true=y)
     print(name)
     print(report)
 
 print('Predicting using TF-IDF features:')
-for name, y, lr in zip(names, labels, logregs_tf):
+for sn, name, y, lr in zip(short_names, names, labels, logregs_tf):
     lr.fit(X=X_tf, y=y)
+    res['tf'][f'{sn}_true'] = y
+    res['tf'][sn] = y_pred
     y_pred = lr.predict(X_tf)
     report = classification_report(y_pred=y_pred, y_true=y)
     print(name)
     print(report)
+
+print('Prediction using also candidate names.')
+print('Here both the target and aspect must be right!')
+print("First using BOW features:")
+
+cv_res = res['cv']
+for sn, name in zip(short_names, names):
+    pred = [f"{t}_{sn}" for t, sn in zip(cv_res['target'], cv_res[sn])]
+    truth = [f"{t}_{sn}" for t, sn in zip(cv_res['target_true'], cv_res[f'{sn}_true'])]
+    report = classification_report(y_pred=pred, y_true=truth)
+    print(name)
+    print(report)
+
+    
