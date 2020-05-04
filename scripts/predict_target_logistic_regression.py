@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import classification_report
 
-INPUT_PATH = "./data/final-corpus.csv"
+INPUT_PATH = "../data/final-corpus.csv"
 corpus = pd.read_csv(INPUT_PATH)
 comment = corpus.comment
 target = corpus.target
