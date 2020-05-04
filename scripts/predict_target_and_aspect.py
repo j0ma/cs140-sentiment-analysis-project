@@ -198,23 +198,29 @@ res = {'cv': {}, 'tf': {}}
 
 print('Predicting using regular BoW features:')
 for sn, name, y, lr in zip(short_names, names, labels, logregs_cv):
-    lr.fit(X=X_cv, y=y)
-    y_pred = lr.predict(X_cv)
-    res['cv'][f'{sn}_true'] = y
-    res['cv'][sn] = y_pred
-    report = classification_report(y_pred=y_pred, y_true=y)
-    print(name)
-    print(report)
+    try:
+        lr.fit(X=X_cv, y=y)
+        y_pred = lr.predict(X_cv)
+        res['cv'][f'{sn}_true'] = y
+        res['cv'][sn] = y_pred
+        report = classification_report(y_pred=y_pred, y_true=y)
+        print(name)
+        print(report)
+    except:
+        continue
 
 print('Predicting using TF-IDF features:')
 for sn, name, y, lr in zip(short_names, names, labels, logregs_tf):
-    lr.fit(X=X_tf, y=y)
-    res['tf'][f'{sn}_true'] = y
-    res['tf'][sn] = y_pred
-    y_pred = lr.predict(X_tf)
-    report = classification_report(y_pred=y_pred, y_true=y)
-    print(name)
-    print(report)
+    try:
+        lr.fit(X=X_tf, y=y)
+        res['tf'][f'{sn}_true'] = y
+        res['tf'][sn] = y_pred
+        y_pred = lr.predict(X_tf)
+        report = classification_report(y_pred=y_pred, y_true=y)
+        print(name)
+        print(report)
+    except:
+        continue
 
 print('Prediction using also candidate names.')
 print('Here both the target and aspect must be right!')
@@ -222,10 +228,28 @@ print("First using BOW features:")
 
 cv_res = res['cv']
 for sn, name in zip(short_names, names):
-    pred = [f"{t}_{sn}" for t, sn in zip(cv_res['target'], cv_res[sn])]
-    truth = [f"{t}_{sn}" for t, sn in zip(cv_res['target_true'], cv_res[f'{sn}_true'])]
-    report = classification_report(y_pred=pred, y_true=truth)
-    print(name)
-    print(report)
+    try:
+        pred = [f"{t}_{sn}" for t, sn in zip(cv_res['target'], cv_res[sn])]
+        truth = [f"{t}_{sn}" for t, sn in zip(cv_res['target_true'], cv_res[f'{sn}_true'])]
+        report = classification_report(y_pred=pred, y_true=truth)
+        print(name)
+        print(report)
+    except:
+        continue
 
-    
+print("Then using TF-IDF features:")
+
+tf_res = res['tf']
+for sn, name in zip(short_names, names):
+    try:
+        pred = [f"{t}_{sn}" for t, sn in zip(tf_res['target'], tf_res[sn])]
+        truth = [f"{t}_{sn}" for t, sn in zip(tf_res['target_true'], tf_res[f'{sn}_true'])]
+        report = classification_report(y_pred=pred, y_true=truth)
+        print(name)
+        print(report)
+    except:
+        continue
+
+        
+
+        
