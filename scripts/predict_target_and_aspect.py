@@ -8,6 +8,7 @@ from sklearn.metrics import classification_report
 INPUT_PATH = "./data/final-corpus.csv"
 corpus = pd.read_csv(INPUT_PATH).fillna(0)
 comment = corpus.comment
+target = corpus.target
 cols = corpus.columns
 
 def is_policy_comment(row, cols):
@@ -29,12 +30,14 @@ def is_generally_positive(row):
     return bool(g == 'positive')
 
 # create features
+Y_target = target
 Y_policy = corpus.apply(lambda r: is_policy_comment(r, cols), axis=1)
 Y_appeal = corpus.apply(lambda r: is_appeal_comment(r, cols), axis=1)
 Y_cp = corpus.apply(lambda r: is_campaign_prospects_comment(r), axis=1)
 Y_positive = corpus.apply(lambda r: is_generally_positive(r), axis=1)
-labels = [Y_policy, Y_appeal, Y_cp, Y_positive]
-names = ['Is the comment about policy?', 
+labels = [Y_target, Y_policy, Y_appeal, Y_cp, Y_positive]
+names = ['Who is the target?', 
+         'Is the comment about policy?', 
          'Is the comment about voter appeal?', 
          'Is the comment about campaign prospects?', 
          'Is the comment generally positive?']
